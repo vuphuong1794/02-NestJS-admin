@@ -10,10 +10,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true, //tránh các field không được khai báo trong DTO
+    forbidNonWhitelisted: true, //báo lỗi khi có field không được khai báo trong DTO
+    transform: true
   }));
 
   app.setGlobalPrefix('api/v1', {exclude: ['']});
-  
+
   await app.listen( port );
   
 }
